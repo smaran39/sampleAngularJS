@@ -31,26 +31,19 @@ myApp.service('nameService',function functionName() {
 
 myApp.controller('mainController', ['$scope', '$log','nameService', function($scope, $log,nameService) {
 
-    $scope.name = nameService.name;
 
-    $scope.$watch('name',function () {
-      nameService.name = $scope.name;
-    });
-/*
-    $log.log(nameService.name);
-    $log.log(nameService.namelength());
-    $log.log(nameService);
-*/
 }]);
 
 myApp.controller('secondController', ['$scope', '$log','$routeParams','nameService', function($scope, $log,$routeParams,nameService) {
 
-    //$scope.name = 'Second';
-    $scope.num = $routeParams.num || 1;
-    $scope.name=nameService.name;
 
-    $scope.$watch('name',function () {
-      nameService.name = $scope.name;
-    });
 
 }]);
+
+myApp.directive('searchResult',function () {
+  return {
+    template: '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">John Doe</h4><p class="list-group-item-text">2404 Nutwood Avenue, California</p></a>',
+    replace: false
+
+  };
+});
