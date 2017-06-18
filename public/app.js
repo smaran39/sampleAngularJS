@@ -30,7 +30,10 @@ myApp.service('nameService',function functionName() {
 });
 
 myApp.controller('mainController', ['$scope', '$log','nameService', function($scope, $log,nameService) {
-
+$scope.person={
+  name:'John Doe',
+  address:'2404 Nutwood Avenue, California'
+}
 
 }]);
 
@@ -42,8 +45,12 @@ myApp.controller('secondController', ['$scope', '$log','$routeParams','nameServi
 
 myApp.directive('searchResult',function () {
   return {
-    template: '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">John Doe</h4><p class="list-group-item-text">2404 Nutwood Avenue, California</p></a>',
-    replace: false
+    templateUrl: 'directives/searchresult.html',
+    replace: false,
+    scope: {
+      personName: "@",
+      personAddress: "@"
+    }
 
   };
 });
