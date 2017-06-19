@@ -32,8 +32,20 @@ myApp.service('nameService',function functionName() {
 myApp.controller('mainController', ['$scope', '$log','nameService', function($scope, $log,nameService) {
 $scope.person={
   name:'John Doe',
-  address:'2404 Nutwood Avenue, California'
+  address:'2404 Nutwood Avenue',
+  city:'Fullerton',
+  state:'California',
+  zip:'92831'
 }
+/*$scope.formattedAddress = function (person) {
+  return person.address + ', ' + person.city + ', ' + person.state + ', ' + person.zip;
+};*/
+
+$scope.formattedAddress = function(person) {
+
+       return person.address + ', ' + person.city + ', ' + person.state+ ' ' + person.zip;
+
+   };
 
 }]);
 
@@ -48,8 +60,9 @@ myApp.directive('searchResult',function () {
     templateUrl: 'directives/searchresult.html',
     replace: false,
     scope: {
-      personName: "@",
-      personAddress: "@"
+      personObject: "=",
+      formattedAddressFunction: "&"
+
     }
 
   };
