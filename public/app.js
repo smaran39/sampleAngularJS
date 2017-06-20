@@ -30,13 +30,29 @@ myApp.service('nameService',function functionName() {
 });
 
 myApp.controller('mainController', ['$scope', '$log','nameService', function($scope, $log,nameService) {
-$scope.person={
+$scope.people = [
+  {
   name:'John Doe',
   address:'2404 Nutwood Avenue',
   city:'Fullerton',
   state:'California',
   zip:'92831'
+},
+{
+name:'Jane Danet',
+address:'2404 Nutwood Avenue',
+city:'Fullerton',
+state:'New York',
+zip:'92831'
+},
+{
+name:'James Frank',
+address:'2404 Nutwood Avenue',
+city:'Fullerton',
+state:'Arizona',
+zip:'92831'
 }
+];
 /*$scope.formattedAddress = function (person) {
   return person.address + ', ' + person.city + ', ' + person.state + ', ' + person.zip;
 };*/
@@ -63,7 +79,23 @@ myApp.directive('searchResult',function () {
       personObject: "=",
       formattedAddressFunction: "&"
 
-    }
+    },
+    transclude: true //by default it is false
+
+    /*
+    compile:function (elem,attrs) {
+      console.log("Compiling...");
+      //elem.removeAttr('class');  // Not working
+      console.log(elem);
+      return {
+
+        post:function (scope, elements,attrs) {
+          console.log("Post-linking....");
+          console.log(scope);
+          console.log(elements);
+        }
+      };
+    }*/
 
   };
 });
